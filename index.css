@@ -1,0 +1,47 @@
+@font-face {
+    font-family: "Mojangles";
+    src: url("fonts/mojangles.otf.woff2") format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body{
+    font-family: "Mojangles";
+    color: #F3CD7B;
+    font-size: 22px;
+    padding: 0px;
+    margin: 0px;
+}
+
+#counter{
+    display: inline-block;
+    width: 432px;
+    height: 48px;
+    background-color: #040202;
+    box-sizing: border-box;
+    border: 4px #F3CD7B solid;
+    padding-left: 37px;
+    padding-right: 37px;
+    vertical-align: middle;
+}
+
+#total{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:1px;
+    float: left;
+}
+
+#today{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:1px;
+    float: right;
+}
