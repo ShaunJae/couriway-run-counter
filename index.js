@@ -1,15 +1,17 @@
 /*
 
+Looks at the past <lookbackCount> runs and counts how many before a gap of <inactivePeriod>
+ occurs between two consecutive runs date_played_est_2 times. Reads the 100k sheet to do so
+
 Run times (date_played_est_2) is in column CJ
 Run number (run_id) is in column CO
 
 */
-
-const spreadsheetID = "1Tyw9fwdZgsHJoHzlE-0LPSEDOduRkZwL2UUNA-_4Xo4"
-var sheetsKey = urlParams.get("key")
-
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
+
+var sheetsKey = urlParams.get("key")
+const spreadsheetID = "1Tyw9fwdZgsHJoHzlE-0LPSEDOduRkZwL2UUNA-_4Xo4"
 
 var totalElement = document.getElementById("total")
 var todayElement = document.getElementById("today")
