@@ -72,7 +72,7 @@ function getLastRunTime(){
 function getTodaysRuns(){
     var lookbackRuns = getRunTimes(lookbackCount)
 
-    if(new Date() - lookbackRuns[0][0] > inactivePeriodMs){
+    if(new Date() - new Date(lookbackRuns[0][0]) > inactivePeriodMs){
         return 0
     }
 
@@ -106,3 +106,4 @@ updateCounter()
 window.setInterval(function(){
     updateCounter()
 }, 10000)
+
