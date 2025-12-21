@@ -12,9 +12,7 @@ const spreadsheetID = "1Tyw9fwdZgsHJoHzlE-0LPSEDOduRkZwL2UUNA-_4Xo4"
 var totalElement = document.getElementById("total")
 var todayElement = document.getElementById("today")
 
-var updateRate = urlParams.get("update_rate") == null ? 10 : parseInt(urlParams.get("update_rate"))
-
-var totalRunId = ""
+var updateRate = urlParams.get("update_rate") == null ? 30 : parseInt(urlParams.get("update_rate"))
 
 // Opens http request
 function httpGet(url){
@@ -37,30 +35,23 @@ function getSheetData(sheet, cellRange){
 }
 
 /**
- * @returns {number} An integer of current run number
+ * @returns Dictionary with two string int pairs correlating to total and todays run counts
  */
-function getTotalRunID(){
-    var response = getSheetData("100k Stats", "B5:B5")
-    return parseInt(response[0][0].replaceAll(",",""))
-}
-
-/**
- * @returns The number of runs completed from the 100k sheet
- */
-function getTodaysRuns(){
-    return getSheetData("100k Stats", "E6:E6") 
+function getRunTotals(){
+    var data = getSheetData("100k Stats", "B5:E6")
+    return {
+        "total": parseInt(data[0][0].replaceAll(",","")),
+        "today": parseInt(data[1][3])
+    }
 }
 
 /**
  * Updates the total and today elements
  */
 function updateCounter(){
-    var newestTotalRunId = getTotalRunID()
-    if (totalRunId != newestTotalRunId) {
-        totalElement.innerHTML = "Total: " + newestTotalRunId.toString()
-        todayElement.innerHTML = "Today: " + getTodaysRuns().toString()
-        totalRunId = newestTotalRunId
-    }
+    var runCounts = getRunTotals()
+    totalElement.innerHTML = "Total: " + runCounts["total"].toString()
+    todayElement.innerHTML = "Today: " + runCounts["today"].toString()
 }
 
 //Runs counter update on load
